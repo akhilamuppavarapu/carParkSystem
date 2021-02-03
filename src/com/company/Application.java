@@ -69,6 +69,7 @@ public class Application {
                 break;
             case 2:
                 // delete the parking slot
+                deleteParkingSlot();
                 break;
             case 3:
                 // print out all parking slots
@@ -151,5 +152,22 @@ public class Application {
 
 
     }
+
+    private void deleteParkingSlot() throws IOException {
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter parking slot id to delete");
+        String psId = bufferedReader.readLine();
+        for (int i = 0; i < availableParkingSlots.size(); i ++) {
+            ParkingSlot parkingSlot = availableParkingSlots.get(i);
+            if (psId.equals(parkingSlot.getParkSlotIdentifier())) {
+                availableParkingSlots.remove(parkingSlot);
+                System.out.println("Deleted Parking slot: " + psId);
+            }
+        }
+        carPark.setAvailableParkingSlots(availableParkingSlots);
+
+    }
+
 
 }
