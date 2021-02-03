@@ -38,4 +38,28 @@ public class Car {
         isOwnerStaff = ownerStaff;
     }
 
+    public boolean validateCarReg(String carId) {
+        boolean isValid;
+
+        if (carId.length() == 5) {
+            if (Character.isAlphabetic(carId.codePointAt(0))
+                    && Character.isUpperCase(carId.codePointAt(0))) {
+
+                isValid = Character.isDigit(carId.codePointAt(1))
+                        && Character.isDigit(carId.codePointAt(2))
+                        && Character.isDigit(carId.codePointAt(3))
+                        && Character.isDigit(carId.codePointAt(4));
+
+            } else {
+                isValid = false;
+            }
+        } else {
+            isValid = false;
+        }
+
+        return isValid;
+
+    }
+
+
 }
