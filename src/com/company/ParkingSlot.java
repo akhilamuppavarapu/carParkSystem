@@ -48,4 +48,31 @@ public class ParkingSlot {
         this.slotType = slotType;
     }
 
+    public boolean validateSlotFormat(String slotId) {
+        boolean isValid;
+
+        if (slotId.length() == 3) {
+            if (Character.isAlphabetic(slotId.codePointAt(0))
+                    && Character.isUpperCase(slotId.codePointAt(0))) {
+
+                if (Character.isDigit(slotId.codePointAt(1))
+                        && Character.isDigit(slotId.codePointAt(2))) {
+                    isValid = true;
+                } else {
+                    isValid = false;
+                }
+
+            } else {
+                isValid = false;
+            }
+        } else {
+            isValid = false;
+        }
+
+        return isValid;
+
+    }
+
+
+
 }

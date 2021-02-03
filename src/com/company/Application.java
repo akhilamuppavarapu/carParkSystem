@@ -50,6 +50,7 @@ public class Application {
                 System.exit(1);
             } else {
                 // We have to handle all other inputs here
+                handleInputs(input);
             }
         } catch (IOException e) {
             System.out.println("UNABLE TO READ YOUR INPUT!");
