@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class ParkingSlot {
 
     private String parkSlotIdentifier; // D01, E27, F16 => Captial letter followed by 2 digits
@@ -73,6 +75,42 @@ public class ParkingSlot {
 
     }
 
+    public boolean validateParkingSlotId(String slotId, ArrayList<ParkingSlot> availableSlots, ArrayList<ParkingSlot> occupiedSlots) {
+        boolean isValid = false;
+
+        if (validateSlotFormat(slotId)) {
+            System.out.println("VALID FORMAT RECEIVED");
+            if (availableSlots.size() != 0) {
+                for (ParkingSlot parkingSlot: availableSlots) {
+                    if (slotId.equals(parkingSlot.getParkSlotIdentifier())) {
+                        isValid = false;
+                    } else {
+                        isValid = true;
+                    }
+                }
+            }
+
+            if (occupiedSlots.size() != 0) {
+                for (ParkingSlot parkingSlot1 : occupiedSlots) {
+                    if (slotId.equals(parkingSlot1.getParkSlotIdentifier())) {
+                        isValid = false;
+                    } else {
+                        isValid = true;
+                    }
+                }
+
+            }
+
+            isValid = true;
+
+        } else {
+            isValid = false;
+        }
+
+        System.out.println("Is it valid?: " + isValid);
+
+        return isValid;
+    }
 
 
 }
