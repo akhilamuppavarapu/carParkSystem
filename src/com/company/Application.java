@@ -77,6 +77,7 @@ public class Application {
                 break;
             case 4:
                 // park a car into a slot
+                parkACarIntoSlot();
                 break;
             case 5:
                 // print car details
@@ -88,6 +89,53 @@ public class Application {
                 System.out.println("Did not get a proper input");
         }
         startInterface();
+    }
+
+    private void parkACarIntoSlot() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        ParkingSlot parkingSlot = new ParkingSlot();
+        System.out.println("Enter parking slot id");
+        String psId = bufferedReader.readLine();
+        if (parkingSlot.validateSlotFormat(psId)) {
+            for (int i = 0; i < availableParkingSlots.size(); i++) {
+                ParkingSlot parkingSlot1 = availableParkingSlots.get(i);
+                if (psId.equals(parkingSlot1.getParkSlotIdentifier())) {
+
+                    System.out.println("Enter parking slot type: visitor or staff");
+                    parkingSlot1.setSlotType(bufferedReader.readLine());
+
+                    parkingSlot1.setCarParked(true);
+                    Car car = new Car();
+                    System.out.println("Enter car registration number like T2345");
+                    String carId = bufferedReader.readLine();
+
+                    if (car.validateCarReg(carId)) {
+                        car.setCarRegistration(carId);
+
+                        System.out.println("Enter car owner name");
+                        car.setOwnerName(bufferedReader.readLine());
+
+                        System.out.println("Is owner staff member?");
+                        System.out.println("Enter Y for YES and N for NO");
+                        if (bufferedReader.readLine().equals("Y")) {
+                            car.setOwnerStaff(true);
+                        } else if (bufferedReader.readLine().equals("N")){
+                            car.setOwnerStaff(false);
+                        }
+                    } else {
+                        System.out.println("PLEASE ENTER VALID CAR REGISTRATION ID IN THE FORM OF T1234, E7823, ETC");
+                    }
+                    parkingSlot1.setParkedCarDetails(car);
+                }
+                availableParkingSlots.remove(parkingSlot1);
+                occupiedParkingSlots.add(parkingSlot1);
+            }
+        } else {
+            System.out.println("PLEASE ENTER VALID PARKING SLOT ID IN THE FORM OF D01, E27, F16, ETC");
+        }
+        carPark.setAvailableParkingSlots(availableParkingSlots);
+        carPark.setOccupiedParkingSlots(occupiedParkingSlots);
+
     }
 
     private void listAllParkingSpots() {
