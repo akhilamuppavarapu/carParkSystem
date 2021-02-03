@@ -58,4 +58,32 @@ public class Application {
         }
 
     }
+
+    private void handleInputs(int optionNumber) throws IOException {
+
+        switch (optionNumber) {
+            case 1:
+                // add a parking slot here
+                break;
+            case 2:
+                // delete the parking slot
+                break;
+            case 3:
+                // print out all parking slots
+                break;
+            case 4:
+                // park a car into a slot
+                break;
+            case 5:
+                // print car details
+                break;
+            case 6:
+                // delete car from the parking slot
+                break;
+            default:
+                System.out.println("Did not get a proper input");
+        }
+        startInterface();
+    }
+
 }
