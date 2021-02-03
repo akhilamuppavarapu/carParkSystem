@@ -81,6 +81,7 @@ public class Application {
                 break;
             case 5:
                 // print car details
+                findCarDetails();
                 break;
             case 6:
                 // delete car from the parking slot
@@ -89,6 +90,25 @@ public class Application {
                 System.out.println("Did not get a proper input");
         }
         startInterface();
+    }
+
+    private void findCarDetails() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter car registration number like T2345");
+        String carId = bufferedReader.readLine();
+        if (new Car().validateCarReg(carId)) {
+            for (int i = 0; i < occupiedParkingSlots.size(); i ++) {
+                ParkingSlot parkingSlot = occupiedParkingSlots.get(i);
+                if (carId.equals(parkingSlot.getParkedCar().getCarRegistration())) {
+                    System.out.println("Parking Slot Id: " + parkingSlot.getParkSlotIdentifier());
+                    System.out.println("Car Owner: " + parkingSlot.getParkedCar().getOwnerName());
+                    System.out.println("Is Staff Car: " + parkingSlot.getParkedCar().isOwnerStaff());
+                }
+            }
+        } else {
+            System.out.println("PLEASE ENTER VALID CAR REGISTRATION ID IN THE FORM OF T1234, E7823, ETC");
+        }
+
     }
 
     private void parkACarIntoSlot() throws IOException {
