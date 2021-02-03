@@ -73,6 +73,7 @@ public class Application {
                 break;
             case 3:
                 // print out all parking slots
+                listAllParkingSpots();
                 break;
             case 4:
                 // park a car into a slot
@@ -87,6 +88,30 @@ public class Application {
                 System.out.println("Did not get a proper input");
         }
         startInterface();
+    }
+
+    private void listAllParkingSpots() {
+        System.out.println("availableParkingSlots.size()");
+        System.out.println(availableParkingSlots.size());
+        for (ParkingSlot parkingSlot: availableParkingSlots) {
+            System.out.println("Slot Id: " + parkingSlot.getParkSlotIdentifier());
+            System.out.println("Slot Type: " + parkingSlot.getSlotType());
+            System.out.println("Is Slot Occupied? " + parkingSlot.isCarParked());
+            System.out.println("**********************");
+        }
+
+        System.out.println("occupiedParkingSlots.size()");
+        System.out.println(occupiedParkingSlots.size());
+        for (ParkingSlot parkingSlot : occupiedParkingSlots) {
+            System.out.println("Slot Id: " + parkingSlot.getParkSlotIdentifier());
+            System.out.println("Slot Type: " + parkingSlot.getSlotType());
+            System.out.println("Is Slot Occupied? " + parkingSlot.isCarParked());
+            System.out.println("Car Registration: " + parkingSlot.getParkedCar().getCarRegistration());
+            System.out.println("Car Owner: " + parkingSlot.getParkedCar().getOwnerName());
+            System.out.println("**********************");
+
+        }
+
     }
 
     private void addParkingSlot() throws IOException {
