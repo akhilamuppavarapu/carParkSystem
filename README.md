@@ -1,16 +1,14 @@
 # Car Parking Sytem
 
-Project encapsulating basic OOP principles in Java which involves creating a command line based car parking monitoring solution.
-
 ## Background: 
 
 A small system is required that will help manage cars at a parking site for a company. 
 This system should have exactly following four classes:
 
-• Application class
-• CarPark class
-• ParkingSlot class
-• Car class
+* Application class
+* CarPark class
+* ParkingSlot class
+* Car class
 
 Application is the Console (Text Based) Interface class including the main() method and
 handling all inputs and outputs.
